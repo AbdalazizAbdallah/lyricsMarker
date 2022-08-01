@@ -1,17 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/material/colors.dart' as colP;
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lyrics_marker/route.dart';
 import 'package:vector_math/vector_math_64.dart';
 
 import '../utils/helpers/constant_app_color.dart';
 import '../utils/helpers/constant_app_image.dart';
 
-class StartPage extends StatelessWidget {
+class StartPage extends StatefulWidget {
   const StartPage({Key? key}) : super(key: key);
 
   @override
+  State<StartPage> createState() => _StartPageState();
+}
+
+class _StartPageState extends State<StartPage> {
+  @override
+  void didChangeDependencies() {
+    precacheImage(const AssetImage(ConstantAppImage.startImage), context);
+    super.didChangeDependencies();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    TextTheme _textTheme = Theme.of(context).textTheme;
+    TextTheme textTheme = Theme.of(context).textTheme;
     return Scaffold(
       body: Container(
         padding: EdgeInsets.symmetric(horizontal: 21.w, vertical: 31.h),
@@ -30,13 +42,13 @@ class StartPage extends StatelessWidget {
               child: RichText(
                 text: TextSpan(
                     text: 'create any '.toUpperCase(),
-                    style: _textTheme.headline4?.copyWith(
+                    style: textTheme.headline4?.copyWith(
                       color: colP.Colors.white,
                     ),
                     children: [
                       TextSpan(
                         text: 'lyrics'.toUpperCase(),
-                        style: _textTheme.headline4?.copyWith(
+                        style: textTheme.headline4?.copyWith(
                           color: ConstantAppColor.myRedLight,
                           fontWeight: FontWeight.bold,
                         ),
@@ -51,7 +63,7 @@ class StartPage extends StatelessWidget {
                 alignment: Alignment.center,
                 child: Text(
                   'FROM YOUR PHONE',
-                  style: _textTheme.headline4
+                  style: textTheme.headline4
                       ?.copyWith(color: colP.Colors.white, fontSize: 28.sp),
                 ),
               ),
@@ -59,14 +71,14 @@ class StartPage extends StatelessWidget {
             Spacer(),
             Text(
               'Join The Community',
-              style: _textTheme.headline6?.copyWith(
+              style: textTheme.headline6?.copyWith(
                 color: colP.Colors.white,
                 fontWeight: FontWeight.bold,
               ),
             ),
             Text(
               'The Ultimate Lyrics Marker App',
-              style: _textTheme.caption?.copyWith(
+              style: textTheme.caption?.copyWith(
                 color: colP.Colors.white,
               ),
             ),
@@ -78,11 +90,13 @@ class StartPage extends StatelessWidget {
                   padding: EdgeInsets.all(13.h),
                   minimumSize: Size(254.w, 51.w),
                   shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(27))),
-              onPressed: () {},
+                      borderRadius: BorderRadius.circular(20))),
+              onPressed: () {
+                Navigator.pushNamed(context, RouteGenerator.loginPage);
+              },
               child: Text(
                 'Get started',
-                style: _textTheme.bodyText1?.copyWith(
+                style: textTheme.bodyText1?.copyWith(
                   color: colP.Colors.white,
                   fontWeight: FontWeight.bold,
                 ),
