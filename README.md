@@ -1,7 +1,11 @@
 # lyrics_marker
 
 A new Flutter project.
-![]
+
+<p>
+<img src="mockupLyrics/Surface%20Pro%203%20–%202.png" width="600">
+</p>
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
